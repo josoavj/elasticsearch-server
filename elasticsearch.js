@@ -1,5 +1,5 @@
 /*
-  Express.js Server (Node Server)
+*   Express.js Server (Node Server)
 */
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -12,7 +12,7 @@ app.listen(port, () => {
 
 
 /*
-  Elasticsearch client
+*   Elasticsearch client
 */
 const { Client } = require('@elastic/elasticsearch');
 const client = new Client({
@@ -26,4 +26,7 @@ const client = new Client({
   .then(response => console.log(response))
   .catch(error => console.error(error))
 
-  
+
+/*
+*   Elasticsearch Index
+*/
