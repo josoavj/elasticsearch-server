@@ -1,0 +1,14 @@
+{
+  "name": "sfi",
+  "version": "1.0.0",
+  "description": "elasticsearch",
+  "main": "elasticsearch.js",
+  "scripts": {
+    "test": "node elasticserach.js"
+  },
+  "author": "=Josoa Vonjiniaina <josoavonjiniaina13@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.14.0"
+  }
+}
