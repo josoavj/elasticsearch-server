@@ -9,6 +9,7 @@
   "author": "=Josoa Vonjiniaina <josoavonjiniaina13@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@elastic/elasticsearch": "^8.14.0"
+    "@elastic/elasticsearch": "^8.14.0",
+    "express": "^4.19.2"
   }
 }
