@@ -43,18 +43,21 @@ async function checkNodeHealth() {
 
 // Read data
 async function readElasticIndex() {
-  await client.search({
-    index: '.ds-filebeat-8.14.1-2024.06.27-000002',
-    body: {
-      from: 0,
-      size: 5,
-      query: {
-        match_all: {}
+  try{
+    const index = await client.search({
+      index: '.ds-filebeat-8.14.1-2024.06.27-000002',
+      body: {
+        from: 0,
+        size: 5,
+        query: {
+          match_all: {}
+        }
       }
-    }
-  })
-  .then(res => console.log(res))
-  .catch(err => console.log(err));
+    })
+    console.log('Data:', index);
+  } catch (error){
+    console.error('Error reading data:', error)
+  }
 }
 
 // Express Server
