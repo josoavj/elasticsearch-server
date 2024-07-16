@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { Client } = require('@elastic/elasticsearch');
+const { Client, BaseConnection } = require('@elastic/elasticsearch');
 const client = new Client({
   node: 'https://stagiaire:Police2405$@192.168.0.19:9200',
   ssl: {
@@ -37,6 +37,5 @@ async function searchFilebeatIndex() {
   }
 }
 
-// Appler les fonctions
 checkClusterHealth();
 searchFilebeatIndex();
