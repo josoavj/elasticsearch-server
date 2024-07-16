@@ -1,14 +1,26 @@
 const fs = require('fs');
+const express = require('express');
+const app = express();
+const port = 3000;
+
 const { Client, BaseConnection } = require('@elastic/elasticsearch');
 const client = new Client({
   node: 'https://stagiaire:Police2405$@192.168.0.19:9200',
-  ssl: {
+  /**
+   *  node: 'https://localhost:9200',
+   * auth: {
+   *     username: '',
+   *     password: ''
+   * }
+   * 
+  */
+  tls: {
     ca: fs.readFileSync('./assets/http_ca.crt'),
     rejectUnauthorized: false,
   }
 });
 
-//// Vérifier les informations du cluster
+// Vérification des informations du cluster
 async function checkClusterHealth() {
   try {
       const health = await client.cluster.health();
@@ -18,24 +30,25 @@ async function checkClusterHealth() {
   }
 }
 
-// Effectuer une recherche dans l'index Filebeat
-async function searchFilebeatIndex() {
+// Checking the node health
+async function checkNodeHealth() {
   try {
-    const result = await client.search({
-      index: 'filebeat-8.14.1',
-      body: {
-        from: 0,
-        size: 5,
-        query: {
-          match_all: {}
-        }
-      }
-    });
-    console.log('Search Results:', result.body.hits.hits);
+    const health = await client.nodes.stats();
+    console.log('Node Health:', health);
   } catch (error) {
-    console.error('Error searching index:', error);
+    console.error('Error fetching node health:', error);
   }
 }
 
+// Express Server
+app.get('/', (req, res) => {
+  console.log('The server is running')
+})
+
+app.listen(port, () => {
+  console.log(`The app's listening on port ${port}`)
+})
+
+// Main
 checkClusterHealth();
-searchFilebeatIndex();
+checkNodeHealth();
