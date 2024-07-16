@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 
 const { Client, BaseConnection } = require('@elastic/elasticsearch');
+const { ALL } = require('dns');
 const client = new Client({
   node: 'https://stagiaire:Police2405$@192.168.0.19:9200',
   /**
@@ -40,6 +41,22 @@ async function checkNodeHealth() {
   }
 }
 
+// Read data
+async function readElasticIndex() {
+  await client.search({
+    index: '.ds-filebeat-8.14.1-2024.06.27-000002',
+    body: {
+      from: 0,
+      size: 5,
+      query: {
+        match_all: {}
+      }
+    }
+  })
+  .then(res => console.log(res))
+  .catch(err => console.log(err));
+}
+
 // Express Server
 app.get('/', (req, res) => {
   console.log('The server is running')
@@ -52,3 +69,4 @@ app.listen(port, () => {
 // Main
 checkClusterHealth();
 checkNodeHealth();
+readElasticIndex();
