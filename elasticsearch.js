@@ -21,6 +21,18 @@ const client = new Client({
   }
 });
 
+
+
+// Checking the elasticsearch client
+async function checkClientInfo(){
+  try{
+    const info = await client.info();
+    console.log('Client Info:', info)
+  } catch(error){
+    console.error('Error checking the client info:', error)
+  }
+}
+
 // Vérification des informations du cluster
 async function checkClusterHealth() {
   try {
@@ -40,6 +52,7 @@ async function checkNodeHealth() {
     console.error('Error fetching node health:', error);
   }
 }
+
 
 // Read data
 async function readElasticIndex() {
