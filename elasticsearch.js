@@ -2,6 +2,14 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const port = 3000;
+const http = require("https");
+// Test de connecion direct via api
+// const options = {
+//   "method": "GET",
+//   "hostname": "192.168.0.19",
+//   "port": "9200",
+//   "path": "/filebeat-8.14.3/_search",
+// };
 
 const { Client, BaseConnection } = require('@elastic/elasticsearch');
 const { ALL } = require('dns');
@@ -22,6 +30,20 @@ const client = new Client({
 });
 
 
+// const req = http.request(options, function (res) {
+//   const chunks = [];
+
+//   res.on("data", function (chunk) {
+//     chunks.push(chunk);
+//   });
+
+//   res.on("end", function () {
+//     const body = Buffer.concat(chunks);
+//     console.log(body.toString());
+//   });
+// });
+
+// req.end();
 
 // Checking the elasticsearch client
 async function checkClientInfo(){
@@ -58,7 +80,7 @@ async function checkNodeHealth() {
 async function readElasticIndex() {
   try{
     const index = await client.search({
-      index: '.ds-filebeat-8.14.1-2024.06.27-000002',
+      index: '.ds-filebeat-8.14.3-2024.07.16-000001',
       body: {
         from: 0,
         size: 5,
@@ -86,3 +108,6 @@ app.listen(port, () => {
 checkClusterHealth();
 checkNodeHealth();
 readElasticIndex();
+
+
+
