@@ -83,7 +83,7 @@ async function readElasticIndex() {
       index: '.ds-filebeat-8.14.3-2024.07.16-000001',
       body: {
         from: 0,
-        size: 5,
+        size: 10,
         query: {
           match_all: {}
         }
