@@ -80,7 +80,9 @@ async function checkNodeHealth() {
 async function readElasticIndex() {
   try{
     const index = await client.search({
-      index: '.ds-filebeat-8.14.3-2024.07.16-000001',
+      //index: '.ds-filebeat-8.14.3-2024.07.16-000001',
+      index: 'filebeat-8.14.3',
+      
       body: {
         from: 0,
         size: 10,
