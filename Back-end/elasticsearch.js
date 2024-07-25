@@ -1,5 +1,5 @@
-const fs = require('fs');
-const express = require('express');
+const fs = require("fs");
+const express = require("express");
 const app = express();
 const port = 3000;
 const http = require("https");
@@ -11,10 +11,10 @@ const http = require("https");
 //   "path": "/filebeat-8.14.3/_search",
 // };
 
-const {Client, BaseConnection} = require('@elastic/elasticsearch');
-const {ALL} = require('dns');
+const { Client, BaseConnection } = require("@elastic/elasticsearch");
+const { ALL } = require("dns");
 const client = new Client({
-  node : 'https://stagiaire:Police2405$@192.168.0.19:9200',
+  node: "https://stagiaire:Police2405$@192.168.0.19:9200",
   /**
    *  node: 'https://localhost:9200',
    * auth: {
@@ -23,10 +23,10 @@ const client = new Client({
    * }
    *
    */
-  tls : {
-    ca : fs.readFileSync('./assets/http_ca.crt'),
-    rejectUnauthorized : false,
-  }
+  tls: {
+    ca: fs.readFileSync("./assets/http_ca.crt"),
+    rejectUnauthorized: false,
+  },
 });
 
 // const req = http.request(options, function (res) {
@@ -48,9 +48,9 @@ const client = new Client({
 async function checkClientInfo() {
   try {
     const info = await client.info();
-    console.log('Client Info:', info)
+    console.log("Client Info:", info);
   } catch (error) {
-    console.error('Error checking the client info:', error)
+    console.error("Error checking the client info:", error);
   }
 }
 
@@ -58,9 +58,9 @@ async function checkClientInfo() {
 async function checkClusterHealth() {
   try {
     const health = await client.cluster.health();
-    console.log('Cluster Health:', health);
+    console.log("Cluster Health:", health);
   } catch (error) {
-    console.error('Error fetching cluster health:', error);
+    console.error("Error fetching cluster health:", error);
   }
 }
 
@@ -68,9 +68,9 @@ async function checkClusterHealth() {
 async function checkNodeHealth() {
   try {
     const health = await client.nodes.stats();
-    console.log('Node Health:', health);
+    console.log("Node Health:", health);
   } catch (error) {
-    console.error('Error fetching node health:', error);
+    console.error("Error fetching node health:", error);
   }
 }
 
@@ -79,20 +79,24 @@ async function readElasticIndex() {
   try {
     const index = await client.search({
       // index: '.ds-filebeat-8.14.3-2024.07.16-000001',
-      index : 'filebeat-8.14.3',
+      index: "filebeat-8.14.3",
 
-      body : {from : 0, size : 10, query : {match_all : {}}}
-    })
-    console.log('Data:', index);
+      body: { from: 0, size: 10, query: { match_all: {} } },
+    });
+    console.log("Data:", index);
   } catch (error) {
-    console.error('Error reading data:', error)
+    console.error("Error reading data:", error);
   }
 }
 
 // Express Server
-app.get('/', (req, res) => {console.log('The server is running')})
+app.get("/", (req, res) => {
+  console.log("The server is running");
+});
 
-app.listen(port, () => {console.log(`The app's listening on port ${port}`)})
+app.listen(port, () => {
+  console.log(`The app's listening on port ${port}`);
+});
 
 // Main
 // Main basic checking functions
