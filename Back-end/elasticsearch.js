@@ -11,24 +11,23 @@ const http = require("https");
 //   "path": "/filebeat-8.14.3/_search",
 // };
 
-const { Client, BaseConnection } = require('@elastic/elasticsearch');
-const { ALL } = require('dns');
+const {Client, BaseConnection} = require('@elastic/elasticsearch');
+const {ALL} = require('dns');
 const client = new Client({
-  node: 'https://stagiaire:Police2405$@192.168.0.19:9200',
+  node : 'https://stagiaire:Police2405$@192.168.0.19:9200',
   /**
    *  node: 'https://localhost:9200',
    * auth: {
    *     username: '',
    *     password: ''
    * }
-   * 
-  */
-  tls: {
-    ca: fs.readFileSync('./assets/http_ca.crt'),
-    rejectUnauthorized: false,
+   *
+   */
+  tls : {
+    ca : fs.readFileSync('./assets/http_ca.crt'),
+    rejectUnauthorized : false,
   }
 });
-
 
 // const req = http.request(options, function (res) {
 //   const chunks = [];
@@ -46,11 +45,11 @@ const client = new Client({
 // req.end();
 
 // Checking the elasticsearch client
-async function checkClientInfo(){
-  try{
+async function checkClientInfo() {
+  try {
     const info = await client.info();
     console.log('Client Info:', info)
-  } catch(error){
+  } catch (error) {
     console.error('Error checking the client info:', error)
   }
 }
@@ -58,10 +57,10 @@ async function checkClientInfo(){
 // Vérification des informations du cluster
 async function checkClusterHealth() {
   try {
-      const health = await client.cluster.health();
-      console.log('Cluster Health:', health);
+    const health = await client.cluster.health();
+    console.log('Cluster Health:', health);
   } catch (error) {
-      console.error('Error fetching cluster health:', error);
+    console.error('Error fetching cluster health:', error);
   }
 }
 
@@ -75,42 +74,28 @@ async function checkNodeHealth() {
   }
 }
 
-
 // Read data
 async function readElasticIndex() {
-  try{
+  try {
     const index = await client.search({
-      //index: '.ds-filebeat-8.14.3-2024.07.16-000001',
-      index: 'filebeat-8.14.3',
-      
-      body: {
-        from: 0,
-        size: 10,
-        query: {
-          match_all: {}
-        }
-      }
+      // index: '.ds-filebeat-8.14.3-2024.07.16-000001',
+      index : 'filebeat-8.14.3',
+
+      body : {from : 0, size : 10, query : {match_all : {}}}
     })
     console.log('Data:', index);
-  } catch (error){
+  } catch (error) {
     console.error('Error reading data:', error)
   }
 }
 
 // Express Server
-app.get('/', (req, res) => {
-  console.log('The server is running')
-})
+app.get('/', (req, res) => {console.log('The server is running')})
 
-app.listen(port, () => {
-  console.log(`The app's listening on port ${port}`)
-})
+app.listen(port, () => {console.log(`The app's listening on port ${port}`)})
 
 // Main
 // Main basic checking functions
 checkClusterHealth();
 checkNodeHealth();
 readElasticIndex();
-
-
-
