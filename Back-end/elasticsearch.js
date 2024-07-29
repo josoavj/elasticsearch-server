@@ -29,22 +29,6 @@ const client = new Client({
   },
 });
 
-// const req = http.request(options, function (res) {
-//   const chunks = [];
-
-//   res.on("data", function (chunk) {
-//     chunks.push(chunk);
-//   });
-
-//   res.on("end", function () {
-//     const body = Buffer.concat(chunks);
-//     console.log(body.toString());
-//   });
-// });
-
-// req.end();
-
-// Checking the elasticsearch client
 async function checkClientInfo() {
   try {
     const info = await client.info();
