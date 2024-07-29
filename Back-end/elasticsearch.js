@@ -11,10 +11,10 @@ const http = require("https");
 //   "path": "/filebeat-8.14.3/_search",
 // };
 
-const {Client, BaseConnection} = require("@elastic/elasticsearch");
-const {ALL} = require("dns");
+const { Client, BaseConnection } = require("@elastic/elasticsearch");
+const { ALL } = require("dns");
 const client = new Client({
-  node : "https://stagiaire:Police2405$@192.168.0.19:9200",
+  node: "https://stagiaire:Police2405$@192.168.0.19:9200",
   /**
    *  node: 'https://localhost:9200',
    * auth: {
@@ -23,9 +23,9 @@ const client = new Client({
    * }
    *
    */
-  tls : {
-    ca : fs.readFileSync("./assets/http_ca.crt"),
-    rejectUnauthorized : false,
+  tls: {
+    ca: fs.readFileSync("./assets/http_ca.crt"),
+    rejectUnauthorized: false,
   },
 });
 
@@ -79,9 +79,9 @@ async function readElasticIndex() {
   try {
     const index = await client.search({
       // index: '.ds-filebeat-8.14.3-2024.07.16-000001',
-      index : "filebeat-8.14.3",
+      index: "filebeat-8.14.3",
 
-      body : {from : 0, size : 10, query : {match_all : {}}},
+      body: { from: 0, size: 10, query: { match_all: {} } },
     });
     console.log("Données", index);
   } catch (error) {
@@ -91,28 +91,32 @@ async function readElasticIndex() {
 
 async function getLastFiveDocuments(index) {
   try {
-    const {body} = await client.search({
-      index : index,
-      body : {
-        query : {match_all : {}},
-        sort : [ {_id : {order : "desc"}} ],
-        size : 5,
+    const { body } = await client.search({
+      index: index,
+      body: {
+        query: { match_all: {} },
+        sort: [{ _id: { order: "desc" } }],
+        size: 5,
       },
     });
 
     const hits = body.hits.hits;
-    hits.forEach(
-        (hit,
-         index) => { console.log(`Document ${index + 1}:`, hit._source); });
+    hits.forEach((hit, index) => {
+      console.log(`Document ${index + 1}:`, hit._source);
+    });
   } catch (error) {
     console.error("Erreur lors de la récupération des documents:", error);
   }
 }
 
 // Express Server
-app.get("/", (req, res) => { console.log("The server is running"); });
+app.get("/", (req, res) => {
+  console.log("The server is running");
+});
 
-app.listen(port, () => { console.log(`The app's listening on port ${port}`); });
+app.listen(port, () => {
+  console.log(`The app's listening on port ${port}`);
+});
 
 // Main basic checking functions
 checkClusterHealth();
