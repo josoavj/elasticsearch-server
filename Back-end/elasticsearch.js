@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const http = require("https");
-// Test de connecion direct via api
+// Test de connexion direct via api
 // const options = {
 //   "method": "GET",
 //   "hostname": "192.168.0.19",
@@ -18,8 +18,8 @@ const client = new Client({
   /**
    *  node: 'https://localhost:9200',
    * auth: {
-   *     username: '',
-   *     password: ''
+   *     username: 'stagiaire',
+   *     password: 'Police2405$'
    * }
    *
    */
@@ -118,7 +118,6 @@ app.listen(port, () => {
   console.log(`The app's listening on port ${port}`);
 });
 
-// Main
 // Main basic checking functions
 checkClusterHealth();
 checkNodeHealth();
