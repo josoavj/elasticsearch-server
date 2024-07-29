@@ -12,3 +12,4 @@
 ### Run
 
 - **Run:** `node elasticsearch.js`
+- **Run:** `node testElactisearch.js`
