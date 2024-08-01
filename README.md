@@ -2,7 +2,7 @@
 
 - **Description:** Simple node server integration with elasticsearch
 - **Type:** Web server (Node server)
-- **Language or techno:** Javascipt, NodeJS, ExpressJS
+- **Language or techno:** Javascript, NodeJS, ExpressJS
 
 ## Contributor
 
