@@ -117,7 +117,7 @@ const client = new Client({
 
 const phraseSearch = async (_index, _type, phrase) => {
   const hits = [];
-  filebeat-8.14.3
+  //filebeat-8.14.3
   //const _index = ".ds-filebeat-8.14.3-2024.07.29-000004";
 
   // only string values are searchable
