@@ -11,10 +11,10 @@ const http = require("https");
 //   "path": "/filebeat-8.14.3/_search",
 // };
 
-const {Client, BaseConnection} = require("@elastic/elasticsearch");
-const {ALL} = require("dns");
+const { Client, BaseConnection } = require("@elastic/elasticsearch");
+const { ALL } = require("dns");
 const client = new Client({
-  node : "https://stagiaire:Police2405$@192.168.0.19:9200",
+  node: "https://stagiaire:Police2405$@192.168.0.19:9200",
   /**
    *  node: 'https://localhost:9200',
    * auth: {
@@ -23,12 +23,12 @@ const client = new Client({
    * }
    *
    */
-  auth : {
-    apiKey : "OecGCKrCR4q5q1QHvg0tsw",
+  auth: {
+    apiKey: "OecGCKrCR4q5q1QHvg0tsw",
   },
-  tls : {
-    ca : fs.readFileSync("./assets/http_ca.crt"),
-    rejectUnauthorized : false,
+  tls: {
+    ca: fs.readFileSync("./assets/http_ca.crt"),
+    rejectUnauthorized: false,
   },
 });
 
@@ -121,39 +121,40 @@ const phraseSearch = async (_index, _type, phrase) => {
 
   // only string values are searchable
   const searchResult = await client
-                           .search({
-                             index : "filebeat-8.14.3",
-                             type : document,
-                             body : {
-                               query : {
-                                 multi_match : {
-                                   fields : [
-                                     'destination',
-                                     'source',
-                                   ],
-                                   query : phrase,
-                                   type : 'phrase_prefix',
-
-                                 },
-                               },
-                               highlight : {
-                                 fields : {
-                                   destination : {},
-                                   source : {},
-                                 },
-                               },
-                             },
-                           })
-                           .catch((e) => console.log('errr', e));
-  if (searchResult && searchResult.body && searchResult.body.hits &&
-      searchResult.body.hits.hits && searchResult.body.hits.hits.length > 0) {
+    .search({
+      index: "filebeat-8.14.3",
+      type: document,
+      body: {
+        query: {
+          multi_match: {
+            fields: ["destination", "source"],
+            query: phrase,
+            type: "phrase_prefix",
+          },
+        },
+        highlight: {
+          fields: {
+            destination: {},
+            source: {},
+          },
+        },
+      },
+    })
+    .catch((e) => console.log("errr", e));
+  if (
+    searchResult &&
+    searchResult.body &&
+    searchResult.body.hits &&
+    searchResult.body.hits.hits &&
+    searchResult.body.hits.hits.length > 0
+  ) {
     hits.push(...searchResult.body.hits.hits);
   }
 
   return {
-    hitsCount : hits.length,
+    hitsCount: hits.length,
     hits,
   };
 };
 
-module.exports = {phraseSearch};
+module.exports = { phraseSearch };
