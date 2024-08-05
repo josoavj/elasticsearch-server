@@ -59,19 +59,36 @@ app.get('/search/:index/:type', async (req, res) => {
 app.listen(3000, () => console.log('server running at 3000'));
 
 // Utilisation de AXIOS
-axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search', { 
-  httpsAgent: agent,
-  auth: {
-    username: 'stagiaire',
-    password: 'Police2405$'},
-  tls: {
-    ca: fs.readFileSync("./assets/http_ca.crt"),
-    rejectUnauthorized: false,
-  },
- })
-    .then(response => {
-        console.log(response.data);
-    })
+axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search', 
+  // Authentification
+  { 
+    httpsAgent: agent,
+    auth: {
+      username: 'stagiaire',
+      password: 'Police2405$'
+    },
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    tls: {
+      ca: fs.readFileSync("./assets/http_ca.crt"),
+      rejectUnauthorized: false,
+    },
+   },
+
+   // Limiter le nombre de données à afficher
+  {
+    size: 1, 
+    query: {
+      match_all: {}
+    }},
+  )
+  .then(response => {
+    const hits = response.data.hits.hits;
+    hits.forEach((hit, index) => {
+      console.log(`Document ${index + 1}:`, hit._source);
+    });
+  })
     .catch(error => {
         console.error('Error:', error);
     });
