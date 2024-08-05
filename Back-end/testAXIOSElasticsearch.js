@@ -68,8 +68,7 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
       rejectUnauthorized: false,
     },
    },
-
-   // Limiter le nombre de données à afficher
+   
   {
     size: 1, 
     query: {
