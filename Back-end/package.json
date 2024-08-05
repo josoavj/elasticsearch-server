@@ -4,7 +4,8 @@
   "description": "elasticsearch",
   "main": "elasticsearch.js",
   "scripts": {
-    "test": "node elasticserach.js"
+    "test": "node Back-end/testAXIOSElasticsearch.js",
+    "start": "nodemon Back-end/testAXIOSElasticsearch.js"
   },
   "author": "=Josoa Vonjiniaina <josoavonjiniaina13@gmail.com>",
   "license": "ISC",
