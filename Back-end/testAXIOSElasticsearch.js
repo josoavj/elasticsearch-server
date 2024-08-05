@@ -34,11 +34,6 @@ client.ping()
     .catch(err => console.error('Error connecting to Elasticsearch', err));
     module.exports = client;
 
-// // Test d'accès aux données dans le serveur elasticsearch
-// fetch("https://192.168.0.19:9200/filebeat-8.14.3/_search")
-//   .then((response) => response.json())
-//   .then((data) => console.log(data))
-//   .catch((error) => console.error("Error:", error));
 
 app.use(bodyParser.json());
 app.use(
@@ -47,7 +42,6 @@ app.use(
   })
 );
 
-// searching on query
 app.get('/search/:index/:type', async (req, res) => {
   const { phraseSearch } = require('./SearchEngine');
   const data = await phraseSearch(req.params.index, req.params.type, req.query.q);
@@ -60,7 +54,6 @@ app.listen(3000, () => console.log('server running at 3000'));
 
 // Utilisation de AXIOS
 axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search', 
-  // Authentification
   { 
     httpsAgent: agent,
     auth: {
