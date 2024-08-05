@@ -114,11 +114,10 @@ const client = new Client({
 // readElasticIndex();
 // getLastFiveDocuments("filebeat-8.14.3");
 
-
 const phraseSearch = async (_index, _type, phrase) => {
   const hits = [];
-  //filebeat-8.14.3
-  //const _index = ".ds-filebeat-8.14.3-2024.07.29-000004";
+  // filebeat-8.14.3
+  // const _index = ".ds-filebeat-8.14.3-2024.07.29-000004";
 
   // only string values are searchable
   const searchResult = await client
@@ -128,13 +127,9 @@ const phraseSearch = async (_index, _type, phrase) => {
       body: {
         query: {
           multi_match: {
-            fields: [
-              'destination',
-              'source',
-            ],
+            fields: ["destination", "source"],
             query: phrase,
-            type: 'phrase_prefix',
-            
+            type: "phrase_prefix",
           },
         },
         highlight: {
@@ -145,7 +140,7 @@ const phraseSearch = async (_index, _type, phrase) => {
         },
       },
     })
-    .catch((e) => console.log('errr', e));
+    .catch((e) => console.log("errr", e));
   if (
     searchResult &&
     searchResult.body &&
@@ -162,6 +157,4 @@ const phraseSearch = async (_index, _type, phrase) => {
   };
 };
 
-module.exports = {
-  phraseSearch
-};
+module.exports = { phraseSearch };

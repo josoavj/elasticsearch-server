@@ -2,6 +2,15 @@ const fs = require("fs");
 const express = require("express");
 const bodyParser = require('body-parser');
 const app = express();
+const axios = require('axios');
+const https = require('https');
+
+
+// Desactiver la connexion SSL 
+const agent = new https.Agent({  
+  rejectUnauthorized: false
+});
+
 
 /**
  * Vérification de la connexion à Elasticsearch
@@ -18,6 +27,8 @@ const client = new Client({
     rejectUnauthorized: false,
   },
 });
+
+
 client.ping()
     .then(() => console.log('Connected to Elasticsearch'))
     .catch(err => console.error('Error connecting to Elasticsearch', err));
@@ -47,6 +58,20 @@ app.get('/search/:index/:type', async (req, res) => {
 // Test si le serveur est fonctionnel 
 app.listen(3000, () => console.log('server running at 3000'));
 
-
-
-
+// Utilisation de AXIOS
+axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search', { 
+  httpsAgent: agent,
+  auth: {
+    username: 'stagiaire',
+    password: 'Police2405$'},
+  tls: {
+    ca: fs.readFileSync("./assets/http_ca.crt"),
+    rejectUnauthorized: false,
+  },
+ })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
