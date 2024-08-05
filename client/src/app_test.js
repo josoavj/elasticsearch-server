@@ -1,6 +1,7 @@
-import axios from 'axios';
-import { useState } from 'react';
 import './App.css';
+
+import axios from 'axios';
+import {useState} from 'react';
 
 const App = () => {
   const [chosenType, setChosenType] = useState(null);
@@ -12,25 +13,22 @@ const App = () => {
 
   const sendSearchRequest = () => {
     const results = {
-      method: 'GET',
-      url: 'http://localhost:3001/results',
-      params: {
-        type: chosenType,
-        mag: chosenMag,
-        location: chosenLocation,
-        dateRange: chosenDateRange,
-        sortOption: chosenSortOption,
+      method : 'GET',
+      url : 'http://localhost:3001/results',
+      params : {
+        type : chosenType,
+        mag : chosenMag,
+        location : chosenLocation,
+        dateRange : chosenDateRange,
+        sortOption : chosenSortOption,
       },
     };
-    axios
-      .request(results)
-      .then((response) => {
-        console.log(response.data);
-        setDocuments(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    axios.request(results)
+        .then((response) => {
+          console.log(response.data);
+          setDocuments(response.data);
+        })
+        .catch((error) => { console.error(error); });
   };
 
   return (
@@ -49,18 +47,19 @@ const App = () => {
           <ul>
             <li>
               <select
-                name='types'
-                id='types'
-                value={chosenType}
-                onChange={(e) => setChosenType(e.target.value)}
-              >
-                <option value={null}>Select a Type</option>
+  name = 'types'
+  id = 'types'
+  value = {chosenType} onChange =
+      {(e) => setChosenType(e.target.value)} >
+      <option value = {null}>Select a Type<
+          /option>
                 <option value='earthquake'>Earthquake</option>
-                <option value='quarry blast'>Quarry Blast</option>
+      <option value = 'quarry blast'>Quarry Blast<
+          /option>
                 <option value='ice quake'>Ice Quake</option>
-                <option value='explosion'>Explosion</option>
+      <option value = 'explosion'>Explosion</option>
               </select>
-            </li>
+      </li>
             <li>
               <select
                 name='mag'
@@ -68,14 +67,20 @@ const App = () => {
                 value={chosenMag}
                 onChange={(e) => setChosenMag(e.target.value)}
               >
-                <option value={null}>Select magnitude level</option>
-                <option value='2.5'>2.5+</option>
-                <option value='5.5'>5.5+</option>
-                <option value='6.1'>6.1+</option>
-                <option value='7'>7+</option>
-                <option value='8'>8+</option>
+                <option value={null}>Select magnitude level</option><
+      option value =
+          '2.5' >
+          2.5 + </option>
+                <option value='5.5'>5.5+</option><
+          option value =
+              '6.1' >
+              6.1 + </option>
+                <option value='7'>7+</option><
+              option value =
+                  '8' >
+                  8 + </option>
               </select>
-            </li>
+                      </li>
             <li>
               <form>
                 <label>
@@ -86,9 +91,9 @@ const App = () => {
                     value={chosenLocation}
                     onChange={(e) => setChosenLocation(e.target.value)}
                   />
-                </label>
+                      </label>
               </form>
-            </li>
+                      </li>
             <li>
               <select
                 name='dateRange'
@@ -97,16 +102,17 @@ const App = () => {
                 onChange={(e) => setChosenDateRange(e.target.value)}
               >
                 <option value={null}>Select date range</option>
-                <option value='7'>Past 7 Days</option>
+                      <option value = '7'>Past 7 Days<
+                          /option>
                 <option value='14'>Past 14 Days</option>
-                <option value='21'>Past 21 Days</option>
+                      <option value = '21'>Past 21 Days<
+                          /option>
                 <option value='30'>Past 30 Days</option>
-              </select>
-            </li>
-            <li>
-              <select
-                name='sortOption'
-                id='sortOption'
+                      </select>
+            </li><li><
+                  select
+  name = 'sortOption'
+  id = 'sortOption'
                 value={chosenSortOption}
                 onChange={(e) => setchosenSortOption(e.target.value)}
               >
@@ -141,11 +147,10 @@ const App = () => {
                   <p>Event URL: {document._source.url}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            ))
+} < /div>
         )}
-      </div>
-    </div>
+      </div > < /div>
   );
 };
 
