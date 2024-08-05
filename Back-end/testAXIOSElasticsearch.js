@@ -61,14 +61,14 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
       password: 'Police2405$'
     },
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': ['application/json','charset=UTF-8']
     },
     tls: {
       ca: fs.readFileSync("./assets/http_ca.crt"),
       rejectUnauthorized: false,
     },
    },
-   
+
   {
     size: 1, 
     query: {
