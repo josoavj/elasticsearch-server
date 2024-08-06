@@ -77,9 +77,10 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
    },
    // Limiter le nombre de données à afficher
   {
-    size: 1, 
-    query: {
-      match_all: {}
+    "from": 0,
+    "size": 5, 
+    "query": {
+      "match_all": {}
     }},
   )
   .then(response => {
@@ -91,3 +92,6 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
     .catch(error => {
         console.error('Error:', error);
     });
+
+
+    
