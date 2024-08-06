@@ -1,10 +1,10 @@
-const SyslogFilterService = require('./syslogFilter/syslogFilterService');
-const fs = require('fs').promises;
+const SyslogFilterService = require("./syslogFilter/syslogFilterService");
+const fs = require("fs").promises;
 
 async function readJsonFile() {
   try {
     //
-    const data = await fs.readFile('syslog-content.json', 'utf8');
+    const data = await fs.readFile("syslog-content.json", "utf8");
     const jsonObject = JSON.parse(data);
 
     // jsonObject le am param io le object am syslog
@@ -12,9 +12,8 @@ async function readJsonFile() {
     let syslogDto = syslogFilter.filterSyslog();
 
     syslogDto.showDetails();
-
   } catch (err) {
-    console.error('Error reading or parsing the file:', err);
+    console.error("Error reading or parsing the file:", err);
   }
 }
 
