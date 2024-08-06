@@ -1,11 +1,11 @@
-const {error} = require('console');
-const SyslogFilterService = require('./syslogFilter/syslogFilterService');
-const fs = require('fs');
+const { error } = require("console");
+const SyslogFilterService = require("./syslogFilter/syslogFilterService");
+const fs = require("fs");
 
-fs.readFile(__dirname + '/syslog-content.json', 'utf8', (error, data) => {
+fs.readFile(__dirname + "/syslog-content.json", "utf8", (error, data) => {
   if (error) {
     console.log("error reading file", error);
-    return
+    return;
   }
   try {
     const syslogFromJson = JSON.parse(data);
@@ -14,7 +14,7 @@ fs.readFile(__dirname + '/syslog-content.json', 'utf8', (error, data) => {
 
     syslogDto.showDetails();
   } catch (err) {
-    console.error('Error reading or parsing the file:', err);
+    console.error("Error reading or parsing the file:", err);
   }
 });
 
