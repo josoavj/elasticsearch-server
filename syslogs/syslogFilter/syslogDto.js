@@ -22,5 +22,5 @@ class SyslogDto{
     }
 }
 
-export {SyslogDto};
-export default SyslogDto;
+// export {SyslogDto};
+// export default SyslogDto;
