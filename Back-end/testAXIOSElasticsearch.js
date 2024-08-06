@@ -48,7 +48,7 @@ app.use(
 );
 
 // searching on query
-app.get('/search/:index/:type', async (req, res) => {
+app.get('/search/:index/:type', async (req                                              , res) => {
   const { phraseSearch } = require('./SearchEngine');
   const data = await phraseSearch(req.params.index, req.params.type, req.query.q);
   res.json(data);
@@ -77,9 +77,10 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
    },
    // Limiter le nombre de données à afficher
   {
-    size: 1, 
-    query: {
-      match_all: {}
+    "from": 0,
+    "size": 5, 
+    "query": {
+      "match_all": {}
     }},
   )
   .then(response => {
@@ -91,3 +92,6 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
     .catch(error => {
         console.error('Error:', error);
     });
+
+
+    
