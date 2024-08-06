@@ -8,6 +8,6 @@ class AjustedSyslog{
     }
 }
 
-export {AjustedSyslog}
-export default AjustedSyslog
+// export {AjustedSyslog}
+// export default AjustedSyslog
 

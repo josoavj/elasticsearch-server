@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "elasticsearch",
   "main": "elasticsearch.js",
+  "type": "module",
   "scripts": {
     "test": "node Back-end/testAXIOSElasticsearch.js",
     "start": "nodemon Back-end/testAXIOSElasticsearch.js"

@@ -1,7 +1,5 @@
-import AjustedSyslog from "./ajustedSyslog.js";
-import {SyslogDto} from "./syslogDto.js"
-
-
+const  SyslogDto = require('./syslogDto.js');
+const AjustedSyslog = require('./ajustedSyslog.js');
 class SyslogFilterService{
     
     constructor(syslog){
@@ -11,28 +9,28 @@ class SyslogFilterService{
     filterSyslog(){
 
         let syslogDto = new SyslogDto();
-        //sources
+        // Sources
         syslogDto.ipSource = this.ajustedSyslog.source.ip;
         syslogDto.portSource = this.ajustedSyslog.source.port;
         syslogDto.bytesSource = this.ajustedSyslog.source.bytes;
         syslogDto.natIpSource = this.ajustedSyslog.source.nat.ip;
         
-        //destinations
+        // Destinations
         syslogDto.destinationOrgName = this.ajustedSyslog.destination.as.organization.name;
         syslogDto.portDestination = this.ajustedSyslog.destination.port;
         syslogDto.ipDestination = this.ajustedSyslog.destination.ip;
         syslogDto.bytesDestination = this.ajustedSyslog.destination.bytes;
         syslogDto.addressDestination = this.ajustedSyslog.destination.address;
 
-        //rules
+        // Rules
         syslogDto.ruleName = this.ajustedSyslog.rules.name;
 
-        //fortinets firewall
+        //Fortinets Firewall
         syslogDto.fortinetFirewallDestinetsvc = this.ajustedSyslog.fortinet.dstinetsvc;
         syslogDto.fortinetFirewallvwlqualitySeqNum = this.extractSeqNum(this.ajustedSyslog.fortinet.vwlquality);
         syslogDto.fortinetFirewallvwlqualitySeqPort = this.extractSeqPort(this.ajustedSyslog.fortinet.vwlquality);
         
-        //networks
+        // Networks
         syslogDto.bytesNetwork = this.ajustedSyslog.network.bytes;
         return syslogDto;
     }
@@ -55,5 +53,7 @@ class SyslogFilterService{
 
 }
 
-export {SyslogFilterService}
-export default SyslogFilterService;
+// SyslogFilterService();
+// export default SyslogFilterService;
+
+
