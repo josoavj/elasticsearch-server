@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const axios = require('axios');
 const https = require('https');
-
+import SyslogFilterService from "../syslogs/syslogFilter/syslogFilterService.js";
 
 // Desactiver la connexion SSL 
 const agent = new https.Agent({  
@@ -34,12 +34,6 @@ client.ping()
     .catch(err => console.error('Error connecting to Elasticsearch', err));
     module.exports = client;
 
-// // Test d'accès aux données dans le serveur elasticsearch
-// fetch("https://192.168.0.19:9200/filebeat-8.14.3/_search")
-//   .then((response) => response.json())
-//   .then((data) => console.log(data))
-//   .catch((error) => console.error("Error:", error));
-
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -56,7 +50,7 @@ app.get('/search/:index/:type', async (req                                      
 
 
 // Test si le serveur est fonctionnel 
-app.listen(3000, () => console.log('server running at 3000'));
+app.listen(3000, () => console.log('Server running at 3000'));
 
 // Utilisation de AXIOS
 axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search', 
@@ -75,23 +69,16 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
       rejectUnauthorized: false,
     },
    },
-   // Limiter le nombre de données à afficher
-  {
-    "from": 0,
-    "size": 5, 
-    "query": {
-      "match_all": {}
-    }},
   )
   .then(response => {
     const hits = response.data.hits.hits;
     hits.forEach((hit, index) => {
+    let syslogFilter = new SyslogFilterService(hit);
+    let syslogDto = syslogFilter.filterSyslog(); 
+      syslogDto.showDetails();
       console.log(`Document ${index + 1}:`, hit._source);
     });
   })
     .catch(error => {
         console.error('Error:', error);
     });
-
-
-    
