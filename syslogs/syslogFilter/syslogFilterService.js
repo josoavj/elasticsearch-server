@@ -1,5 +1,6 @@
 const  SyslogDto = require('./syslogDto.js');
 const AjustedSyslog = require('./ajustedSyslog.js');
+
 class SyslogFilterService{
     
     constructor(syslog){
@@ -53,6 +54,7 @@ class SyslogFilterService{
 
 }
 
+module.exports = SyslogFilterService;
 // SyslogFilterService();
 // export default SyslogFilterService;
 

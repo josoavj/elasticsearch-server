@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const axios = require('axios');
 const https = require('https');
-import SyslogFilterService from "../syslogs/syslogFilter/syslogFilterService.js";
+const SyslogFilterService = require("../syslogs/syslogFilter/syslogFilterService.js");
 
 // Desactiver la connexion SSL 
 const agent = new https.Agent({  

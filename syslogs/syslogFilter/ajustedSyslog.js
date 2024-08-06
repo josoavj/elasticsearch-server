@@ -8,6 +8,7 @@ class AjustedSyslog{
     }
 }
 
+module.exports = AjustedSyslog;
 // export {AjustedSyslog}
 // export default AjustedSyslog
 
