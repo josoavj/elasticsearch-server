@@ -22,5 +22,6 @@ class SyslogDto{
     }
 }
 
+module.exports = SyslogDto;
 // export {SyslogDto};
 // export default SyslogDto;
