@@ -5,10 +5,9 @@ class AjustedSyslog{
         this.network = object._source.network;
         this.fortinet = object._source.fortinet.firewall;
         this.rules = object._source.rule;
+        this.related = object._source.related;
     }
 }
 
 module.exports = AjustedSyslog;
-// export {AjustedSyslog}
-// export default AjustedSyslog
 

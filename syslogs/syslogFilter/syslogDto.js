@@ -13,15 +13,15 @@ class SyslogDto{
     fortinetFirewallDestinetsvc = new String();
     fortinetFirewallvwlqualitySeqNum = new Int8Array();
     fortinetFirewallvwlqualitySeqPort = new Int8Array();
-    relatedIp = new String();
+    relatedIps = new Object();
 
     showDetails(){
         for(let key in this){
+            if(key != "relatedIps"){
             console.log(key +" : "+this[key])
+        }
         }
     }
 }
 
 module.exports = SyslogDto;
-// export {SyslogDto};
-// export default SyslogDto;
