@@ -17,7 +17,7 @@ class SyslogDto {
 
   showDetails() {
     for (let key in this) {
-      console.log(key + " : " + this[key])
+      console.log(key + " : " + this[key]);
     }
   }
 }
