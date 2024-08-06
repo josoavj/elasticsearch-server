@@ -33,6 +33,14 @@ class SyslogFilterService{
         
         // Networks
         syslogDto.bytesNetwork = this.ajustedSyslog.network.bytes;
+
+        //related
+        syslogDto.relatedIps = this.extractRelatedIps(this.ajustedSyslog.related.ip);
+        syslogDto.relatedIpSource = syslogDto.relatedIps.ipSource;
+        syslogDto.relatedIpDestination = syslogDto.relatedIps.ipDestination
+        if(syslogDto.relatedIps.ipSourcenat!=undefined){
+            syslogDto.relatedIpSourcenat = syslogDto.relatedIps.ipSourcenat;
+        }
         return syslogDto;
     }
 
@@ -52,10 +60,19 @@ class SyslogFilterService{
 
     }
 
+    extractRelatedIps(relatedIps){
+        let relatedIpsObject = new Object();
+        if(relatedIps.length == 3){
+            relatedIpsObject.ipSource = relatedIps[0];
+            relatedIpsObject.ipSourcenat = relatedIps[2];
+            relatedIpsObject.ipDestination = relatedIps[1]
+        }else if(relatedIps.length == 2){
+            relatedIpsObject.ipSource = relatedIps[0];
+            relatedIpsObject.ipDestination = relatedIps[1]
+        }
+        return relatedIpsObject;
+    }
 }
 
 module.exports = SyslogFilterService;
-// SyslogFilterService();
-// export default SyslogFilterService;
-
 
