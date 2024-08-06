@@ -48,7 +48,7 @@ app.use(
 );
 
 // searching on query
-app.get('/search/:index/:type', async (req, res) => {
+app.get('/search/:index/:type', async (req                                              , res) => {
   const { phraseSearch } = require('./SearchEngine');
   const data = await phraseSearch(req.params.index, req.params.type, req.query.q);
   res.json(data);
