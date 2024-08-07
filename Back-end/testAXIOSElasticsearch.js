@@ -72,12 +72,14 @@ axios.get('https://192.168.0.19:9200/filebeat-8.14.3/_search',
   )
   .then(response => {
     const hits = response.data.hits.hits;
-    hits.forEach((hit, index) => {
-    let syslogFilter = new SyslogFilterService(hit);
-    let syslogDto = syslogFilter.filterSyslog(); 
+    let i = 0;
+    console.log("syslog 1 : "+hits[0]);
+  /**   hits.forEach((hit, index) => {
+      let syslogFilter = new SyslogFilterService(hit);
+      let syslogDto = syslogFilter.filterSyslog(); 
       syslogDto.showDetails();
       console.log(`Document ${index + 1}:`, hit._source);
-    });
+    });**/
   })
     .catch(error => {
         console.error('Error:', error);
