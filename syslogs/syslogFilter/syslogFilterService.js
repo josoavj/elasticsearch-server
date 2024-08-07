@@ -29,10 +29,12 @@ class SyslogFilterService{
 
         //Fortinets Firewall
 
-        //syslogDto.fortinetFirewallDestinetsvc = this.ajustedSyslog.fortinet.dstinetsvc;
-        //syslogDto.fortinetFirewallvwlqualitySeqNum = this.extractSeqNum(this.ajustedSyslog.fortinet.vwlquality);
-        //syslogDto.fortinetFirewallvwlqualitySeqPort = this.extractSeqPort(this.ajustedSyslog.fortinet.vwlquality);
-        
+        if(this.ajustedSyslog.fortinet != undefined){
+            syslogDto.fortinetFirewallDestinetsvc = this.ajustedSyslog.fortinet.dstinetsvc;
+            syslogDto.fortinetFirewallvwlqualitySeqNum = this.extractSeqNum(this.ajustedSyslog.fortinet.vwlquality);
+            syslogDto.fortinetFirewallvwlqualitySeqPort = this.extractSeqPort(this.ajustedSyslog.fortinet.vwlquality);
+        }
+           
         // Networks
         syslogDto.bytesNetwork = this.ajustedSyslog.network.bytes;
 
