@@ -2,7 +2,6 @@ class SyslogDto{
     ipSource = new String();
     portSource = new Int8Array();
     bytesSource = new Int16Array();
-    natIpSource = new String();
     bytesNetwork = new Int16Array();
     ruleName = new String();
     ipDestination = new String();
