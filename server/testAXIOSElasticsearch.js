@@ -66,6 +66,9 @@ axios
         ca: fs.readFileSync("./assets/http_ca.crt"),
         rejectUnauthorized: false,
       },
+      data: {
+        size: 25, 
+      },
     },
   )
   .then((response) => {
@@ -73,7 +76,9 @@ axios
         hits.forEach((hit, index) => {
           let syslogFilter = new SyslogFilterService(hit);
           let syslogDto = syslogFilter.filterSyslog();
+          console.log(`Journal Number ${index + 1}:`);
           syslogDto.showDetails();
+          console.log('\n----------------------------------------\n');
         });
   })
   .catch((error) => {
