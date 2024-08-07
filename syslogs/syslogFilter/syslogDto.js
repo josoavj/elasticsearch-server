@@ -16,7 +16,7 @@ class SyslogDto{
 
     showDetails(){
         for(let key in this){
-            if(key != "relatedIps" && this[key]!=undefined){
+            if(key != "relatedIps" || this[key]!=undefined){
             console.log(key +" : "+this[key])
         }
         }
