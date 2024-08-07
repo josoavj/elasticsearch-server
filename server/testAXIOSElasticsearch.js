@@ -69,10 +69,7 @@ axios
     },
   )
   .then((response) => {
-    const hits = response.data.hits;
-    if(hits.hits != undefined){
-      console.log("hits : "+ hits.hits[0])
-    }
+    const hits = response.data.hits.hits;
         hits.forEach((hit, index) => {
           let syslogFilter = new SyslogFilterService(hit);
           let syslogDto = syslogFilter.filterSyslog();
