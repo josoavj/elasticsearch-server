@@ -28,9 +28,10 @@ class SyslogFilterService{
         syslogDto.ruleName = this.ajustedSyslog.rules.name;
 
         //Fortinets Firewall
-        syslogDto.fortinetFirewallDestinetsvc = this.ajustedSyslog.fortinet.dstinetsvc;
-        syslogDto.fortinetFirewallvwlqualitySeqNum = this.extractSeqNum(this.ajustedSyslog.fortinet.vwlquality);
-        syslogDto.fortinetFirewallvwlqualitySeqPort = this.extractSeqPort(this.ajustedSyslog.fortinet.vwlquality);
+
+        //syslogDto.fortinetFirewallDestinetsvc = this.ajustedSyslog.fortinet.dstinetsvc;
+        //syslogDto.fortinetFirewallvwlqualitySeqNum = this.extractSeqNum(this.ajustedSyslog.fortinet.vwlquality);
+        //syslogDto.fortinetFirewallvwlqualitySeqPort = this.extractSeqPort(this.ajustedSyslog.fortinet.vwlquality);
         
         // Networks
         syslogDto.bytesNetwork = this.ajustedSyslog.network.bytes;
