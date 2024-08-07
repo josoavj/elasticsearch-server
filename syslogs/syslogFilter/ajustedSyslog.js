@@ -6,7 +6,9 @@ class AjustedSyslog{
         if(object._source.fortinet != undefined){
             this.fortinet = object._source.fortinet.firewall;
         }
-        this.rules = object._source.rule;
+        if(object._source.rule != undefined){
+            this.rules = object._source.rule;
+        }
         this.related = object._source.related;
     }
 }

@@ -25,7 +25,10 @@ class SyslogFilterService{
         syslogDto.addressDestination = this.ajustedSyslog.destination.address;
 
         // Rules
-        syslogDto.ruleName = this.ajustedSyslog.rules.name;
+        if(this.ajustedSyslog.rules != undefined){
+            syslogDto.ruleName = this.ajustedSyslog.rules.name;
+        }
+        
 
         //Fortinets Firewall
 
