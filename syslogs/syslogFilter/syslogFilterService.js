@@ -14,8 +14,9 @@ class SyslogFilterService{
         syslogDto.ipSource = this.ajustedSyslog.source.ip;
         syslogDto.portSource = this.ajustedSyslog.source.port;
         syslogDto.bytesSource = this.ajustedSyslog.source.bytes;
-        syslogDto.natIpSource = this.ajustedSyslog.source.nat.ip;
-        
+        if(this.ajustedSyslog.source.nat.ip != undefined){
+            syslogDto.natIpSource = this.ajustedSyslog.source.nat.ip;
+        }
         // Destinations
         syslogDto.destinationOrgName = this.ajustedSyslog.destination.as.organization.name;
         syslogDto.portDestination = this.ajustedSyslog.destination.port;
