@@ -7,7 +7,8 @@
 ## Contributor
 
 - **[josoavj](https://github.com/josoavj)**
-- **[sudoted](https://github.com/sudoted)**
+- **[Haritsimba](https://github.com/haritsimba)**
+- **[sudoted](https://github.com/sudoted)** 
 
 ### Run
 
