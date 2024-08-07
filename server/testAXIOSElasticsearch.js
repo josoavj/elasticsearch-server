@@ -74,7 +74,6 @@ axios
           let syslogFilter = new SyslogFilterService(hit);
           let syslogDto = syslogFilter.filterSyslog();
           syslogDto.showDetails();
-          console.log(`Document ${index + 1}:`, hit._source);
         });
   })
   .catch((error) => {
