@@ -8,7 +8,7 @@
 
 - **[josoavj](https://github.com/josoavj)**
 - **[Haritsimba](https://github.com/haritsimba)**
-- **[sudoted](https://github.com/sudoted)** 
+- **[sudoted](https://github.com/sudoted)**
 
 ### Run
 
