@@ -34,7 +34,7 @@ class SyslogFilterService{
         }
         
 
-        //Fortinets Firewall
+        // Fortinets Firewall
 
         if(this.ajustedSyslog.fortinet != undefined){
             syslogDto.fortinetFirewallDestinetsvc = this.ajustedSyslog.fortinet.dstinetsvc;
@@ -45,7 +45,7 @@ class SyslogFilterService{
         // Networks
         syslogDto.bytesNetwork = this.ajustedSyslog.network.bytes;
 
-        //related
+        // Related IP
         syslogDto.relatedIps = this.extractRelatedIps(this.ajustedSyslog.related.ip);
         syslogDto.relatedIpSource = syslogDto.relatedIps.ipSource;
         syslogDto.relatedIpDestination = syslogDto.relatedIps.ipDestination
