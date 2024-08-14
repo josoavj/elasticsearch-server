@@ -5,7 +5,7 @@ const https = require('https');
 const { Client } = require("@elastic/elasticsearch");
 
 const app = express();
-const url = 'https://192.168.0.19:9200/filebeat-8.14.3/_search';
+const url = 'https://172.27.28.14:9200/filebeat-8.15.0/_search';
 
 const client = new Client({
   node: "https://stagiaire:Police2405$@192.168.0.19:9200",

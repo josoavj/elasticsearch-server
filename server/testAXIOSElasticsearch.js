@@ -56,7 +56,7 @@ app.listen(3000, () => console.log("Server running at 3000"));
 // Utilisation de AXIOS
 axios
   .get(
-    "https://172.27.28.14:9200/filebeat-8.14.3/_search",
+    "https://172.27.28.14:9200/filebeat-8.15.0/_search",
     // Authentification
     {
       httpsAgent: agent,
